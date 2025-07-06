@@ -4,7 +4,9 @@ export default {
     "./src/**/*.{html,js,jsx,ts,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      transform: ['hover', 'group-hover'],
+    },
   },
   plugins: [],
 }
