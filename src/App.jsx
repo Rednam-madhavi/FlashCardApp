@@ -28,11 +28,7 @@ const App = () => {
   }, [currentCardIndex]);
 
   const flipCard = () => {
-    setIsFlipped(!isFlipped);
-    if (isFlipped) {
-      setExplanation('');
-      setShowExplanationModal(false);
-    }
+    setIsFlipped((prev) => !prev);
   };
 
   const nextCard = () => {
@@ -57,20 +53,22 @@ const App = () => {
         question: `What is ${topic}?`,
         answer: `${topic} is an important subject in modern learning.`,
       };
-      setGeneratedCard(fakeCard);
+      setTimeout(() => setGeneratedCard(fakeCard), 1000);
     } catch (err) {
       setError('Failed to generate card.');
     } finally {
-      setIsLoading(false);
+      setTimeout(() => setIsLoading(false), 1000);
     }
   };
 
   const onAddCard = () => {
     if (generatedCard) {
-      setCards((prev) => [...prev, generatedCard]);
-      setCurrentCardIndex(cards.length);
+      const updated = [...cards, generatedCard];
+      setCards(updated);
+      setCurrentCardIndex(updated.length - 1);
       setGeneratedCard(null);
       setTopic('');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   };
 
@@ -82,16 +80,18 @@ const App = () => {
     setIsLoading(true);
     setShowExplanationModal(true);
     setTimeout(() => {
-      setExplanation(`"${currentCard.answer}" is a fundamental concept in relation to this topic.`);
+      setExplanation(`"${currentCard.answer}" is a fundamental concept in this topic.`);
       setIsLoading(false);
     }, 1000);
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-100 to-purple-200 flex items-center justify-center p-4">
-      <div className="bg-white p-6 rounded-3xl shadow-2xl max-w-6xl w-full flex flex-col sm:flex-row gap-6">
-        <div className="flex-1 flex flex-col items-center">
-          <h1 className="text-3xl font-bold text-gray-800 mb-4">AI Flashcards</h1>
+    <div className="min-h-screen bg-gradient-to-br from-blue-100 to-purple-200 p-4">
+      <div className="max-w-6xl mx-auto bg-white rounded-3xl shadow-2xl p-6 md:p-10 flex flex-col-reverse lg:flex-row gap-10">
+
+        {/* Left Panel: Flashcard */}
+        <div className="w-full lg:w-1/2 flex flex-col items-center">
+          <h1 className="text-4xl font-bold text-gray-800 mb-6 text-center">✨ AI Flashcards</h1>
           <Flashcard
             question={currentCard.question}
             answer={currentCard.answer}
@@ -105,13 +105,15 @@ const App = () => {
           </p>
         </div>
 
-        <div className="flex-1 flex flex-col items-start">
+        {/* Right Panel: Generator */}
+        <div className="w-full lg:w-1/2 flex flex-col justify-between">
           {showExplanationModal && explanation && (
             <ExplanationModal
               explanation={explanation}
               onClose={() => setShowExplanationModal(false)}
             />
           )}
+
           <CardGenerator
             topic={topic}
             setTopic={setTopic}
@@ -121,9 +123,12 @@ const App = () => {
             onAddCard={onAddCard}
             onCancel={onCancel}
           />
+
           {isLoading && <Loader />}
           <ErrorMessage error={error} />
         </div>
+
+
       </div>
     </div>
   );

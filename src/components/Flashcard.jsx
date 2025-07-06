@@ -24,9 +24,9 @@ const Flashcard = ({ question, answer, isFlipped, onFlip, onExplain }) => {
                             e.stopPropagation();
                             onExplain();
                         }}
-                        className="absolute bottom-4 right-4 px-4 py-2 bg-yellow-400 text-gray-800 rounded-full hover:bg-yellow-500"
+                        className="absolute bottom-4 right-4 px-4 py-2 bg-yellow-400 text-gray-800 rounded-full hover:bg-yellow-500 flex"
                     >
-                        Explain <FaMagic />
+                        Explain <FaMagic size={22} className='mt-2 ml-2' />
                     </button>
                 </div>
             </div>
