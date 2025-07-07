@@ -1,12 +1,21 @@
-# React + Vite
+# 📚 Flashcards App for Learning
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+An interactive flashcards application built with **React** and **Tailwind CSS** to help users learn new topics efficiently. Users can flip cards to reveal answers, navigate between flashcards, and practice active recall through a clean and responsive UI.
 
-Currently, two official plugins are available:
+## 🚀 Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+-  Flip cards to reveal answers
+-  Navigate between flashcards
+-  Responsive design with modern Tailwind styling
+-  Built with React component architecture
+-  Ideal for active recall and spaced repetition learning
 
-## Expanding the ESLint configuration
+##  Tech Stack
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **React** – Frontend library for building UI
+- **Tailwind CSS** – Utility-first CSS framework for fast styling
+- **JavaScript (ES6+)** – Logic and interactivity
+- **Vite** – For fast development (choose your setup)
+
+
+
